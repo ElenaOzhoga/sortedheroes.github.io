@@ -73,6 +73,13 @@ function descendingOrder (a, b) {
 	return 0;
 }
 
+
+//todo @vm: в этом задании была идея собрать всех героев ИЗ дерева
+//todo @vm: в обычный список, и его сортировать
+
+//todo @vm: дерево сортировать конечно сложнее, и это плюс что ты сделала так :)
+//todo @vm: хотелось бы еще видеть возможность как-то сортировать дерево туда-сюда
+
 function sortTree(htmlContainer, ul) {
 	var newUl = ul.cloneNode(false);
 	var list = [];
@@ -122,10 +129,16 @@ function sortTree(htmlContainer, ul) {
 	//helpInnerList.sort(ascendingOrder);
 	helpInnerList.sort(descendingOrder);
 
+	//todo @vm: вот эта часть стремно выглядит
+
+	//todo @vm: проблема с этой частью и в целом с алгоритмом в том что он заточен под три степени вложенности, а если их будет больше?
+	//todo @vm: тут уже нужна рекурсия :)
+	//todo @vm: можешь попробовать переделать рекурсивно, либо уже сделать как было в задании изначально - сортировать обычный список
 	for(var i = 0; i < newUl.childNodes.length; i++) {
 		for(var j = 0; j < helpList.length; j++) {
 			for (var k = 0; k < helpInnerList.length; k++) {
 				if (newUl.childNodes[i].childNodes[1].childNodes[j] !== undefined) {
+					//todo @vm: особенно это условие :)
 					if (helpInnerList[k].className == newUl.childNodes[i].childNodes[1].childNodes[j].childNodes[0].data.replace(/\s/g,"")) {
 						newUl.childNodes[i].childNodes[1].childNodes[j].childNodes[1].appendChild(helpInnerList[k]);
 					}
